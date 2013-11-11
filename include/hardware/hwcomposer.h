@@ -66,6 +66,13 @@ typedef struct hwc_rect {
     int bottom;
 } hwc_rect_t;
 
+typedef struct hwc_frect {
+    float left;
+    float top;
+    float right;
+    float bottom;
+} hwc_frect_t;
+
 typedef struct hwc_region {
     size_t numRects;
     hwc_rect_t const* rects;
