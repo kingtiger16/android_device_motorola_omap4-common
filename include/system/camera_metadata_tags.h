@@ -59,6 +59,7 @@ typedef enum camera_metadata_section {
     ANDROID_TONEMAP,
     ANDROID_LED,
     ANDROID_INFO,
+    ANDROID_BLACK_LEVEL,
     ANDROID_SECTION_COUNT,
 
     VENDOR_SECTION = 0x8000
@@ -93,6 +94,7 @@ typedef enum camera_metadata_section_start {
     ANDROID_TONEMAP_START          = ANDROID_TONEMAP           << 16,
     ANDROID_LED_START              = ANDROID_LED               << 16,
     ANDROID_INFO_START             = ANDROID_INFO              << 16,
+    ANDROID_BLACK_LEVEL_START      = ANDROID_BLACK_LEVEL       << 16,
     VENDOR_SECTION_START           = VENDOR_SECTION            << 16
 } camera_metadata_section_start_t;
 
@@ -105,6 +107,7 @@ typedef enum camera_metadata_section_start {
 typedef enum camera_metadata_tag {
     ANDROID_COLOR_CORRECTION_MODE  = ANDROID_COLOR_CORRECTION_START,
     ANDROID_COLOR_CORRECTION_TRANSFORM,
+    ANDROID_COLOR_CORRECTION_GAINS,
     ANDROID_COLOR_CORRECTION_END,
 
     ANDROID_CONTROL_AE_ANTIBANDING_MODE
@@ -259,6 +262,7 @@ typedef enum camera_metadata_tag {
     ANDROID_SENSOR_REFERENCE_ILLUMINANT1,
     ANDROID_SENSOR_REFERENCE_ILLUMINANT2,
     ANDROID_SENSOR_TIMESTAMP,
+    ANDROID_SENSOR_TEMPERATURE,
     ANDROID_SENSOR_END,
 
     ANDROID_SENSOR_INFO_ACTIVE_ARRAY_SIZE
@@ -285,7 +289,12 @@ typedef enum camera_metadata_tag {
     ANDROID_STATISTICS_FACE_RECTANGLES,
     ANDROID_STATISTICS_FACE_SCORES,
     ANDROID_STATISTICS_HISTOGRAM,
-    ANDROID_STATISTICS_SHARPNESS_MAP,
+    ANDROID_STATISTICS_SHARPNESS_MAP, 
+    ANDROID_STATISTICS_LENS_SHADING_MAP,
+    ANDROID_STATISTICS_PREDICTED_COLOR_GAINS,
+    ANDROID_STATISTICS_PREDICTED_COLOR_TRANSFORM,
+    ANDROID_STATISTICS_SCENE_FLICKER,
+    ANDROID_STATISTICS_LENS_SHADING_MAP_MODE, 
     ANDROID_STATISTICS_END,
 
     ANDROID_STATISTICS_INFO_AVAILABLE_FACE_DETECT_MODES
@@ -311,6 +320,10 @@ typedef enum camera_metadata_tag {
     ANDROID_INFO_SUPPORTED_HARDWARE_LEVEL
                                    = ANDROID_INFO_START,
     ANDROID_INFO_END,
+
+    ANDROID_BLACK_LEVEL_LOCK =
+            ANDROID_BLACK_LEVEL_START,
+    ANDROID_BLACK_LEVEL_END,
 
 } camera_metadata_tag_t;
 
@@ -466,6 +479,7 @@ typedef enum camera_metadata_enum_android_control_af_state {
     ANDROID_CONTROL_AF_STATE_ACTIVE_SCAN,
     ANDROID_CONTROL_AF_STATE_FOCUSED_LOCKED,
     ANDROID_CONTROL_AF_STATE_NOT_FOCUSED_LOCKED,
+    ANDROID_CONTROL_AF_STATE_PASSIVE_UNFOCUSED,
 } camera_metadata_enum_android_control_af_state_t;
 
 // ANDROID_CONTROL_AWB_STATE
@@ -542,6 +556,7 @@ typedef enum camera_metadata_enum_android_lens_facing {
 // ANDROID_LENS_STATE
 typedef enum camera_metadata_enum_android_lens_state {
     ANDROID_LENS_STATE_STATIONARY,
+    ANDROID_LENS_STATE_MOVING,
 } camera_metadata_enum_android_lens_state_t;
 
 
@@ -640,6 +655,19 @@ typedef enum camera_metadata_enum_android_statistics_sharpness_map_mode {
     ANDROID_STATISTICS_SHARPNESS_MAP_MODE_ON,
 } camera_metadata_enum_android_statistics_sharpness_map_mode_t;
 
+// ANDROID_STATISTICS_SCENE_FLICKER
+typedef enum camera_metadata_enum_android_statistics_scene_flicker {
+    ANDROID_STATISTICS_SCENE_FLICKER_NONE,
+    ANDROID_STATISTICS_SCENE_FLICKER_50HZ,
+    ANDROID_STATISTICS_SCENE_FLICKER_60HZ,
+} camera_metadata_enum_android_statistics_scene_flicker_t;
+
+// ANDROID_STATISTICS_LENS_SHADING_MAP_MODE
+typedef enum camera_metadata_enum_android_statistics_lens_shading_map_mode {
+    ANDROID_STATISTICS_LENS_SHADING_MAP_MODE_OFF,
+    ANDROID_STATISTICS_LENS_SHADING_MAP_MODE_ON,
+} camera_metadata_enum_android_statistics_lens_shading_map_mode_t;
+
 
 
 // ANDROID_TONEMAP_MODE
@@ -668,4 +696,10 @@ typedef enum camera_metadata_enum_android_info_supported_hardware_level {
     ANDROID_INFO_SUPPORTED_HARDWARE_LEVEL_FULL,
 } camera_metadata_enum_android_info_supported_hardware_level_t;
 
+
+// ANDROID_BLACK_LEVEL_LOCK
+typedef enum camera_metadata_enum_android_black_level_lock {
+    ANDROID_BLACK_LEVEL_LOCK_OFF,
+    ANDROID_BLACK_LEVEL_LOCK_ON,
+} camera_metadata_enum_android_black_level_lock_t;
 
