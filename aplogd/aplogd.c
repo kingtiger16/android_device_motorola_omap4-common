@@ -66,7 +66,7 @@
 #include <log/logd.h>
 #include <log/logprint.h>
 #include <log/event_tag_map.h>
-#include <log/properties.h>
+#include <cutils/properties.h>
 #include <private/android_filesystem_config.h>
 /* Motorola Includes */
 /* Removed in LJ-OMAP bring-up phase */
