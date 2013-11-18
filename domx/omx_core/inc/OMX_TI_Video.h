@@ -545,7 +545,6 @@ typedef enum OMX_TI_VIDEO_CODINGTYPE {
 	OMX_VIDEO_CodingVP7, /* VP7 */
         OMX_TI_VIDEO_CodingSORENSONSPK, /* Sorenson spark*/
         OMX_VIDEO_CodingSVC,    /**< H.264/SVC */
-	OMX_VIDEO_CodingVP8 /* VP8 */
 }OMX_TI_VIDEO_CODINGTYPE;
 
 
@@ -1248,4 +1247,3 @@ typedef struct OMX_TI_PARAM_SKIP_GREY_OUTPUT_FRAMES {
 } OMX_TI_PARAM_SKIP_GREY_OUTPUT_FRAMES;
 
 #endif /* OMX_TI_VIDEO_H */
-
