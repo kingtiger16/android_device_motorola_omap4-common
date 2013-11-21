@@ -158,9 +158,8 @@ class Item:
   @classmethod
   def GetMetadata(cls, input_zip):
 
-
-    # the target_files contains a record of what the uid,
-    # gid, and mode is supposed to be.
+    # The target_files contains a record of what the uid,
+    # gid, and mode are supposed to be.
     output = input_zip.read("META/filesystem_config.txt")
 
     for line in output.split("\n"):
@@ -202,7 +201,7 @@ class Item:
     values. Recursively calls itself for all descendants.
 
     Returns a dict of {(uid, gid, dmode, fmode, selabel, capabilities): count} counting up
-    all descendants of this node. (dmode or fmode may be None.) Also
+    all descendants of this node.  (dmode or fmode may be None.)  Also
     sets the best_subtree of each directory Item to the (uid, gid,
     dmode, fmode, selabel, capabilities) tuple that will match the most
     descendants of that Item.
@@ -263,16 +262,16 @@ class Item:
 
         if item.uid != current[0] or item.gid != current[1] or \
            item.mode != current[2] or item.selabel != current[4] or \
-           item.capabilities != current[5]:
-          script.SetPermissions("/"+item.name, item.uid, item.gid, item.mode, item.selabel, item.capabilities)
-
+           item.capabilities != current[5]: script.SetPermissions("/"+item.name, item.uid, item.gid,
+                                item.mode, item.selabel, item.capabilities)
         for i in item.children:
           recurse(i, current)
       else:
         if item.uid != current[0] or item.gid != current[1] or \
                item.mode != current[3] or item.selabel != current[4] or \
                item.capabilities != current[5]:
-          script.SetPermissions("/"+item.name, item.uid, item.gid, item.mode, item.selabel, item.capabilities)
+          script.SetPermissions("/"+item.name, item.uid, item.gid,
+                                item.mode, item.selabel, item.capabilities)zzzz
 
     recurse(self, (-1, -1, -1, -1, None, None))
 
